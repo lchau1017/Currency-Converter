@@ -14,15 +14,14 @@ class GetRatesUseCase @Inject constructor(
     private val appConfig: AppConfig,
     @Named("io") private val dispatcher: CoroutineDispatcher
 ) {
-    suspend fun getRatesLabels(): Flow<Result<Pair<List<String>, List<String>>>> = flow {
+    suspend fun getRatesLabels(): Flow<Result<List<String>>> = flow {
         val base = appConfig.getDefaultCurrency()
-        val fromLabels = ratesRepository.getRates(base)
+        val labels = ratesRepository.getRates(base)
             .keys
             .intersect(appConfig.getAvailableCurrency())
             .toList()
-        val toLabels = fromLabels.filter { rates -> rates != base }
         emit(
-            Result.success(Pair(fromLabels, toLabels))
+            Result.success(labels)
         )
     }.flowOn(dispatcher)
         .catch {

@@ -33,7 +33,7 @@ class CalculateAmountViewModel @Inject constructor(
                 .collect { result ->
                     result.onSuccess {
                         _mutableState.value =
-                            UiState.InitData(it.first, it.second)
+                            UiState.InitData(it, it)
                     }.onFailure { failure ->
                         failure.message?.let {
                             _effect.emit(Effect.ShowError(it))

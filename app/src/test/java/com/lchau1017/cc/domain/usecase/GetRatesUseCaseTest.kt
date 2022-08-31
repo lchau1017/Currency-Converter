@@ -82,7 +82,7 @@ class GetRatesUseCaseTest {
 
 
     @Test
-    fun `given appConfig only has USD and HKD available, when getRatesUseCase getRatesLabels 3 rates, then return USD and HKD for from list and HKD for to list`() =
+    fun `given appConfig only has USD and HKD available, when getRatesUseCase getRatesLabels 3 rates, then return USD and HKD to list`() =
         runTest {
 
             val base = "USD"
@@ -94,7 +94,7 @@ class GetRatesUseCaseTest {
                 "GBP" to 0.78f
             )
 
-            val expectedResults = Pair(listOf("USD", "HKD"), listOf("HKD"))
+            val expectedResults = listOf("USD", "HKD")
 
             testedClass.getRatesLabels().test {
                 assertEquals(

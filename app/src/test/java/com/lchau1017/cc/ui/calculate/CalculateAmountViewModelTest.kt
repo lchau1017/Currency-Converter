@@ -50,7 +50,7 @@ class CalculateAmountViewModelTest {
 
             coEvery { getRatesUseCase.getRatesLabels() } returns flow {
                 emit(
-                    Result.success(Pair(listOf("USD", "HKD"), listOf("HKD")))
+                    Result.success(listOf("USD", "HKD"))
                 )
             }
 
@@ -61,7 +61,10 @@ class CalculateAmountViewModelTest {
 
                 // then
                 assertEquals(UiState.Loading, awaitItem())
-                assertEquals(UiState.InitData(listOf("USD", "HKD"), listOf("HKD")), awaitItem())
+                assertEquals(
+                    UiState.InitData(listOf("USD", "HKD"), listOf("USD", "HKD")),
+                    awaitItem()
+                )
 
             }
         }

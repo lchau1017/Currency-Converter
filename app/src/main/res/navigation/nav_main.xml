@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/calculateAmountFragment">
+
+    <fragment
+        android:id="@+id/calculateAmountFragment"
+        android:name="com.lchau1017.cc.ui.calculate.CalculateAmountFragment"
+        android:label="@string/calculate_fragment_label"
+        tools:layout="@layout/fragment_calculate_amount">
+
+        <action
+            android:id="@+id/action_CalculateAmountFragment_to_ConvertAmountFragment"
+            app:destination="@id/convertAmountFragment"
+            app:popUpTo="@id/calculateAmountFragment"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/convertAmountFragment"
+        android:name="com.lchau1017.cc.ui.convert.ConvertAmountFragment"
+        android:label="@string/convert_fragment_label"
+        tools:layout="@layout/fragment_convert_amount">
+        <argument
+            android:name="rate"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="fromValue"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="toValue"
+            app:argType="string"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_ConvertAmountFragment_to_ResultFragment"
+            app:destination="@id/resultFragment"
+            app:popUpTo="@id/calculateAmountFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.lchau1017.cc.ui.result.ResultFragment"
+        android:label="@string/result_fragment_label"
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="amount"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="rate"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+</navigation>

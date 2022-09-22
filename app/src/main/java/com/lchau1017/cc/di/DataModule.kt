@@ -13,6 +13,7 @@ import dagger.hilt.components.SingletonComponent
 @Module
 abstract class DataModule {
 
+
     @Binds
     abstract fun bindRepository(repository: RatesRepositoryImpl): RatesRepository
 

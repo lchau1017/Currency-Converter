@@ -1,9 +1,7 @@
 package com.lchau1017.cc.ui.convert
 
-sealed interface UiState {
-    data class InitData(val fromValue: String, val toValue: String) : UiState
-    data class CountDown(val seconds: Int) : UiState
-}
+data class UiStateData(val fromValue: String, val toValue: String,val seconds: Int = 0)
+
 
 
 sealed interface Effect {

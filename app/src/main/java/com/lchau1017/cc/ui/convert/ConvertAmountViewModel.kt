@@ -20,22 +20,28 @@ class ConvertAmountViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private var _mutableState: MutableStateFlow<UiState> =
+    private var _mutableState: MutableStateFlow<UiStateData> =
         MutableStateFlow(
-            UiState.InitData(
+            UiStateData(
                 savedStateHandle.get<String>("fromValue")!!,
                 savedStateHandle.get<String>("toValue")!!
             )
         )
 
-    val state: StateFlow<UiState> = _mutableState.asStateFlow()
+    val state: StateFlow<UiStateData> = _mutableState.asStateFlow()
 
     private var _effect: MutableSharedFlow<Effect> = MutableSharedFlow()
     val effect: SharedFlow<Effect> = _effect.asSharedFlow()
 
     var countDownJob: Job? = null
 
+    init {
+        countDown()
+    }
+
     fun countDown() {
+
+
         countDownJob = viewModelScope.launch {
             flow {
                 val startingValue = countDownUseCase.getCountDownTime()
@@ -56,7 +62,7 @@ class ConvertAmountViewModel @Inject constructor(
                 }
                 .distinctUntilChanged()
                 .collect {
-                    _mutableState.value = UiState.CountDown(it)
+                    _mutableState.value = _mutableState.value.copy(seconds = it)
                     if (it == 0) {
                         _effect.emit(Effect.BackToBegin)
                     }

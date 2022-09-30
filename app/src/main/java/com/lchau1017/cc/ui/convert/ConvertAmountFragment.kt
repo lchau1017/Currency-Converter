@@ -26,6 +26,7 @@ class ConvertAmountFragment : Fragment() {
 
     private val binding get() = _binding!!
 
+
     private val viewModel: ConvertAmountViewModel by viewModels()
 
     private var alert: AlertDialog? = null
@@ -53,21 +54,14 @@ class ConvertAmountFragment : Fragment() {
 
         with(viewModel) {
             viewLifecycleOwner.lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                repeatOnLifecycle(Lifecycle.State.CREATED) {
                     state.collect { state ->
-                        when (state) {
-                            is UiState.InitData -> {
-                                binding.tvFrom.text = state.fromValue
-                                binding.tvTo.text = state.toValue
-                            }
-                            is UiState.CountDown -> {
-                                binding.tvTime.text = getString(R.string.sec, state.seconds)
-                            }
-                        }
+                        binding.tvFrom.text = state.fromValue
+                        binding.tvTo.text = state.toValue
+                        binding.tvTime.text = getString(R.string.sec, state.seconds)
                     }
                 }
             }
-            countDown()
         }
 
         viewLifecycleOwner.lifecycleScope.launch {

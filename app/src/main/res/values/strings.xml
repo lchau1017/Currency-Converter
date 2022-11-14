@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Currency Converter</string>
+    <string name="calculate_fragment_label">Calculate Fragment</string>
+    <string name="convert_fragment_label">Convert Fragment</string>
+    <string name="result_fragment_label">Result Fragment</string>
+    <string name="precedes">precedes</string>
+    <string name="convert">convert</string>
+    <string name="calculate">Calculate</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="amount">Amount</string>
+    <string name="time_out">Time out</string>
+    <string name="sec">%1$d sec left</string>
+    <string name="alert_title">Approval Required</string>
+    <string name="alert_desc">You are about to get %1$s for %2$s. Do you approve this transaction? </string>
+    <string name="alert_confirm">Approval</string>
+    <string name="alert_cancel">Cancel</string>
+    <string name="result">Great now you have %1$s in your account. Your conversion rate was: %2$s</string>
+
+</resources>
